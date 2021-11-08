@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 10:56:51 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/08 15:45:59 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,19 @@ void	Phonebook::add(
 bool	Phonebook::search_mode()
 {
 	put_address_list();
-	return true;
+	return contact_mode();
 }
 
 void	Phonebook::put_address_list()
 {
 	std::cout
-		<< std::setw(_width) << "INDEX"
+		<< std::setw(_width) << std::right << "INDEX"
 		<< '|'
-		<< std::setw(_width) << "FIRST NAME"
+		<< std::setw(_width) << std::right << "FIRST NAME"
 		<< '|'
-		<< std::setw(_width) << "LAST NAME"
+		<< std::setw(_width) << std::right << "LAST NAME"
 		<< '|'
-		<< std::setw(_width) << "NICKNAME"
+		<< std::setw(_width) << std::right << "NICKNAME"
 		<< std::endl;
 
 	int	end = _idx < _max ? _idx : _max;
@@ -96,7 +96,70 @@ void	Phonebook::put_address_list()
 			<< std::setw(_width) << std::right << _contacts[i].short_nickname()
 			<< std::endl;
 	}
+}
 
+bool	Phonebook::contact_mode() const
+{
+	if (_idx == 0)
+		return true;
+
+	std::string	input;
+
+	std::cout << COLOR_CYAN "Enter index number." COLOR_RESET << std::endl;
+	if (!getline(std::cin, input))
+		return false;
+	else if (!is_valid_input(input))
+	{
+		std::cout << COLOR_RED "Invalid input." COLOR_RESET << std::endl;
+		return true;
+	}
+	else if (!is_valid_range(input))
+	{
+		std::cout << COLOR_RED "Out of index range." COLOR_RESET << std::endl;
+		return true;
+	}
+	else
+		put_contact(atoi(input.c_str()));
+	return true;
+}
+
+bool	Phonebook::is_valid_input(const std::string &input) const
+{
+	for (size_t i = 0; input[i]; ++i)
+	{
+		if (!isdigit(input[i]))
+			return false;
+		if (i == SIZE_MAX)
+			return false;
+	}
+	return true;
+}
+
+bool	Phonebook::is_valid_range(const std::string &input) const
+{
+	const long	idx = atol(input.c_str());
+	const int	range = _idx < _max ? _idx : _max;
+
+	if (idx < 1 || range < idx)
+		return false;
+	return true;
+}
+
+void	Phonebook::put_contact(int idx) const
+{
+	--idx;
+	std::cout
+		<< std::setw(16) << std::right << "first name: " << std::flush
+		<< _contacts[idx].first_name() << '\n'
+		<< std::setw(16) << std::right << "last name: " << std::flush
+		<< _contacts[idx].last_name() << '\n'
+		<< std::setw(16) << std::right << "nickname: " << std::flush
+		<< _contacts[idx].nickname() << '\n'
+		<< std::setw(16) << std::right << "phone number: " << std::flush
+		<< _contacts[idx].phone_number() << '\n'
+		<< std::setw(16) << std::right << "darkest secret: " << std::flush
+		<< _contacts[idx].darkest_secret()
+		<< std::endl;
 }
 
 /* ************************************************************************** */
@@ -122,7 +185,8 @@ void	Phonebook::routine()
 				break;
 		}
 		else if (command == "SEARCH")
-			search_mode();
+			if (!search_mode())
+				break;
 	} while (command != "EXIT");
 
 }

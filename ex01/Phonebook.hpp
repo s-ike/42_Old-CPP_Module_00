@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:33:08 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 10:56:32 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/08 15:45:09 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ class Phonebook
 		const std::string &darkest_secret);
 	bool	search_mode();
 	void	put_address_list();
+	bool	contact_mode() const;
+	bool	is_valid_input(const std::string &input) const;
+	bool	is_valid_range(const std::string &input) const;
+	void	put_contact(int idx) const;
 
 public:
 	Phonebook();
