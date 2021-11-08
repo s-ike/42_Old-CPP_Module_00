@@ -6,10 +6,11 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:37:02 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 10:37:03 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/08 17:41:18 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string>
 #include "Contact.hpp"
 
 Contact::Contact()

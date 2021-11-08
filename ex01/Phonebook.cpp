@@ -6,10 +6,12 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 15:45:59 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/08 17:46:01 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include <iomanip>
 #include "def_color.h"
 #include "Phonebook.hpp"
 
@@ -17,7 +19,7 @@
 /*   private                                                                  */
 /* ************************************************************************** */
 
-void	Phonebook::put_command_list() const
+void	Phonebook::display_command_list() const
 {
 	std::cout << COLOR_CYAN "Enter [ADD, SEARCH, EXIT]." COLOR_RESET << std::endl;
 }
@@ -61,17 +63,17 @@ void	Phonebook::add(
 		std::cout << COLOR_RED "Reached the limit." COLOR_RESET << std::endl;
 		return;
 	}
-	_contacts[_idx % _max] = Contact(_idx + 1, first_name, last_name, nickname, phone_num, secret);
+	_contacts[_idx % _max] = Contact(_idx % _max + 1, first_name, last_name, nickname, phone_num, secret);
 	++_idx;
 }
 
 bool	Phonebook::search_mode()
 {
-	put_address_list();
+	display_address_list();
 	return contact_mode();
 }
 
-void	Phonebook::put_address_list()
+void	Phonebook::display_address_list()
 {
 	std::cout
 		<< std::setw(_width) << std::right << "INDEX"
@@ -119,7 +121,7 @@ bool	Phonebook::contact_mode() const
 		return true;
 	}
 	else
-		put_contact(atoi(input.c_str()));
+		display_contact(atoi(input.c_str()));
 	return true;
 }
 
@@ -145,7 +147,7 @@ bool	Phonebook::is_valid_range(const std::string &input) const
 	return true;
 }
 
-void	Phonebook::put_contact(int idx) const
+void	Phonebook::display_contact(int idx) const
 {
 	--idx;
 	std::cout
@@ -176,7 +178,7 @@ void	Phonebook::routine()
 
 	do
 	{
-		put_command_list();
+		display_command_list();
 		if (!getline(std::cin, command))
 			break;
 		if (command == "ADD")
