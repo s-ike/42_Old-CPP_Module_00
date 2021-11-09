@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:54:59 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 17:34:50 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/09 21:01:41 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ int	Account::getNbWithdrawals( void )
 void	Account::displayAccountsInfos( void )
 {
 	_displayTimestamp();
-	std::cout << "accounts:" << _nbAccounts << ";total:" << _totalAmount
-		<< ";deposits:" << _totalNbDeposits << ";withdrawals:" << _totalNbWithdrawals
+	std::cout << "accounts:" << _nbAccounts
+		<< ";total:" << _totalAmount
+		<< ";deposits:" << _totalNbDeposits
+		<< ";withdrawals:" << _totalNbWithdrawals
 		<< std::endl;
 }
 
@@ -90,9 +92,11 @@ void	Account::makeDeposit( int deposit )
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
 		<< ";p_amount:" << _amount
-		<< ";deposits:" << deposit;
+		<< ";deposit:" << deposit;
 	_amount += deposit;
+	_totalAmount += deposit;
 	++_nbDeposits;
+	++_totalNbDeposits;
 	std::cout << ";amount:" << _amount
 		<< ";nb_deposits:" << _nbDeposits
 		<< std::endl;
@@ -104,12 +108,15 @@ bool	Account::makeWithdrawal( int withdrawal )
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex
 		<< ";p_amount:" << _amount
-		<< ";withdrawal:" << withdrawal;
+		<< ";withdrawal:";
 	if (withdrawal <= checkAmount())
 	{
 		_amount -= withdrawal;
+		_totalAmount -= withdrawal;
 		++_nbWithdrawals;
-		std::cout << ";amount:" << _amount
+		++_totalNbWithdrawals;
+		std::cout << withdrawal
+			<< ";amount:" << _amount
 			<< ";nb_withdrawals:" << _nbWithdrawals
 			<< std::endl;
 		return true;
