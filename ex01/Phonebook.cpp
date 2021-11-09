@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 17:46:01 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/09 21:36:39 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ bool	Phonebook::is_valid_input(const std::string &input) const
 
 bool	Phonebook::is_valid_range(const std::string &input) const
 {
-	const long	idx = atol(input.c_str());
+	const int	idx = atoi(input.c_str());
 	const int	range = _idx < _max ? _idx : _max;
 
 	if (idx < 1 || range < idx)
