@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:05:59 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/11 11:14:51 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:23:58 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ public:
 		const std::string &nickname,
 		const std::string &phone_num,
 		const std::string &darkest_secret);
-	std::string	first_name() const;
-	std::string	short_first_name() const;
-	std::string	last_name() const;
-	std::string	short_last_name() const;
-	std::string	nickname() const;
-	std::string	short_nickname() const;
-	std::string	phone_number() const;
-	std::string	darkest_secret() const;
+	std::string			first_name() const;
+	std::string			last_name() const;
+	std::string			nickname() const;
+	std::string			phone_number() const;
+	std::string			darkest_secret() const;
+	static std::string	to_short(const std::string &str);
 };
 
 #endif

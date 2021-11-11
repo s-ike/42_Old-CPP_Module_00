@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:37:02 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/11 11:15:09 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:24:15 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,14 @@ std::string	Contact::first_name() const
 	return _first_name;
 }
 
-std::string	Contact::short_first_name() const
-{
-	if (_first_name.size() <= 10)
-		return _first_name;
-	return _first_name.substr(0, 9) + ".";
-}
-
 std::string	Contact::last_name() const
 {
 	return _last_name;
 }
 
-std::string	Contact::short_last_name() const
-{
-	if (_last_name.size() <= 10)
-		return _last_name;
-	return _last_name.substr(0, 9) + ".";
-}
-
 std::string	Contact::nickname() const
 {
 	return _nickname;
-}
-
-std::string	Contact::short_nickname() const
-{
-	if (_nickname.size() <= 10)
-		return _nickname;
-	return _nickname.substr(0, 9) + ".";
 }
 
 std::string	Contact::phone_number() const
@@ -80,4 +59,11 @@ std::string	Contact::phone_number() const
 std::string	Contact::darkest_secret() const
 {
 	return _darkest_secret;
+}
+
+std::string	Contact::to_short(const std::string &str)
+{
+	if (str.size() <= 10)
+		return str;
+	return str.substr(0, 9) + ".";
 }

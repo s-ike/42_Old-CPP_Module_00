@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/11 11:16:07 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:25:12 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ void	Phonebook::display_address_list()
 		std::cout
 			<< std::setw(_width) << std::right << i + 1
 			<< '|'
-			<< std::setw(_width) << std::right << _contacts[i].short_first_name()
+			<< std::setw(_width) << std::right << Contact::to_short(_contacts[i].first_name())
 			<< '|'
-			<< std::setw(_width) << std::right << _contacts[i].short_last_name()
+			<< std::setw(_width) << std::right << Contact::to_short(_contacts[i].last_name())
 			<< '|'
-			<< std::setw(_width) << std::right << _contacts[i].short_nickname()
+			<< std::setw(_width) << std::right << Contact::to_short(_contacts[i].nickname())
 			<< std::endl;
 	}
 }
