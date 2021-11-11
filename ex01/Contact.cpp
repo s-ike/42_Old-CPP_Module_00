@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:37:02 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 17:41:18 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:15:09 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 Contact::Contact()
 	:
-	_idx(0),
 	_first_name(""),
 	_last_name(""),
 	_nickname(""),
@@ -24,25 +23,18 @@ Contact::Contact()
 {}
 
 Contact::Contact(
-	int idx,
 	const std::string &first_name,
 	const std::string &last_name,
 	const std::string &nickname,
 	const std::string &phone_num,
 	const std::string &darkest_secret)
 	:
-	_idx(idx),
 	_first_name(first_name),
 	_last_name(last_name),
 	_nickname(nickname),
 	_phone_num(phone_num),
 	_darkest_secret(darkest_secret)
 {}
-
-int	Contact::idx() const
-{
-	return _idx;
-}
 
 std::string	Contact::first_name() const
 {

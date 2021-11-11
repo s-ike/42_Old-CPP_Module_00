@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/11 11:09:46 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:16:07 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	Phonebook::add(
 		std::cout << COLOR_RED "Reached the limit." COLOR_RESET << std::endl;
 		return;
 	}
-	_contacts[_idx % _max] = Contact(_idx % _max + 1, first_name, last_name, nickname, phone_num, secret);
+	_contacts[_idx % _max] = Contact(first_name, last_name, nickname, phone_num, secret);
 	++_idx;
 }
 
@@ -90,7 +90,7 @@ void	Phonebook::display_address_list()
 	for (int i = 0; i < end; ++i)
 	{
 		std::cout
-			<< std::setw(_width) << std::right << _contacts[i].idx()
+			<< std::setw(_width) << std::right << i + 1
 			<< '|'
 			<< std::setw(_width) << std::right << _contacts[i].short_first_name()
 			<< '|'

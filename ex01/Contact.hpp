@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:05:59 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 10:35:38 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:14:51 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 class Contact
 {
-	int			_idx;
 	std::string	_first_name;
 	std::string	_last_name;
 	std::string	_nickname;
@@ -27,13 +26,11 @@ class Contact
 public:
 	Contact();
 	Contact(
-		int idx,
 		const std::string &first_name,
 		const std::string &last_name,
 		const std::string &nickname,
 		const std::string &phone_num,
 		const std::string &darkest_secret);
-	int			idx() const;
 	std::string	first_name() const;
 	std::string	short_first_name() const;
 	std::string	last_name() const;
