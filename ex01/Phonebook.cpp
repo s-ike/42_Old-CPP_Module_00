@@ -6,12 +6,13 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/09 21:36:39 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:09:46 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 #include "def_color.h"
 #include "Phonebook.hpp"
 
@@ -115,7 +116,18 @@ bool	Phonebook::contact_mode() const
 		std::cout << COLOR_RED "Invalid input." COLOR_RESET << std::endl;
 		return true;
 	}
-	else if (!is_valid_range(input))
+
+	std::stringstream	sst;
+	int					n;
+
+	sst << input;
+	sst >> n;
+	if (sst.fail())
+	{
+		std::cout << COLOR_RED "Invalid input." COLOR_RESET << std::endl;
+		return true;
+	}
+	else if (!is_valid_range(n))
 	{
 		std::cout << COLOR_RED "Out of index range." COLOR_RESET << std::endl;
 		return true;
@@ -137,12 +149,11 @@ bool	Phonebook::is_valid_input(const std::string &input) const
 	return true;
 }
 
-bool	Phonebook::is_valid_range(const std::string &input) const
+bool	Phonebook::is_valid_range(int input_n) const
 {
-	const int	idx = atoi(input.c_str());
 	const int	range = _idx < _max ? _idx : _max;
 
-	if (idx < 1 || range < idx)
+	if (input_n < 1 || range < input_n)
 		return false;
 	return true;
 }

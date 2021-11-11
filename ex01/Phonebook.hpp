@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:33:08 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/08 17:42:40 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/10 13:38:59 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Phonebook
 	void	display_address_list();
 	bool	contact_mode() const;
 	bool	is_valid_input(const std::string &input) const;
-	bool	is_valid_range(const std::string &input) const;
+	bool	is_valid_range(int input_n) const;
 	void	display_contact(int idx) const;
 
 public:
