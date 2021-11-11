@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:54:59 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/09 21:01:41 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/10 16:31:06 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,15 +150,18 @@ void	Account::_displayTimestamp( void )
 #ifndef TEST
 	time_t		current = time(NULL);
 	struct tm	*timer = localtime(&current);
+	char		buffer[256];
 
-	std::cout << '['
-		<< timer->tm_year + 1900
-		<< std::setw(2) << std::setfill('0') << timer->tm_mon + 1
-		<< std::setw(2) << std::setfill('0') << timer->tm_mday
-		<< '_'
-		<< std::setw(2) << std::setfill('0') << timer->tm_hour
-		<< std::setw(2) << std::setfill('0') << timer->tm_min
-		<< std::setw(2) << std::setfill('0') << timer->tm_sec
-		<< "] ";
+	strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", timer);
+	std::cout << buffer;
+	// std::cout << '['
+	// 	<< timer->tm_year + 1900
+	// 	<< std::setw(2) << std::setfill('0') << timer->tm_mon + 1
+	// 	<< std::setw(2) << std::setfill('0') << timer->tm_mday
+	// 	<< '_'
+	// 	<< std::setw(2) << std::setfill('0') << timer->tm_hour
+	// 	<< std::setw(2) << std::setfill('0') << timer->tm_min
+	// 	<< std::setw(2) << std::setfill('0') << timer->tm_sec
+	// 	<< "] ";
 #endif
 }
