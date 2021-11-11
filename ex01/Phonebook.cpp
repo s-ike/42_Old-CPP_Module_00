@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:44:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/11/11 11:25:12 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:39:03 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,17 @@ void	Phonebook::display_command_list() const
 
 bool	Phonebook::add_mode()
 {
-	std::string	first_name;
-	std::string	last_name;
-	std::string	nickname;
-	std::string	phone_num;
-	std::string	secret;
+	const std::string	field_name[] = {
+		"first name:", "last name:", "nickname:", "phone number:", "darkest secret:"};
+	std::string	field_contents[sizeof(field_name) / sizeof(field_name[0])];
 
-	std::cout << "first name:" << std::endl;
-	if (!getline(std::cin, first_name))
-		return false;
-	std::cout << "last name:" << std::endl;
-	if (!getline(std::cin, last_name))
-		return false;
-	std::cout << "nickname:" << std::endl;
-	if (!getline(std::cin, nickname))
-		return false;
-	std::cout << "phone number:" << std::endl;
-	if (!getline(std::cin, phone_num))
-		return false;
-	std::cout << "darkest secret:" << std::endl;
-	if (!getline(std::cin, secret))
-		return false;
-	add(first_name, last_name, nickname, phone_num, secret);
+	for (unsigned i = 0; i < sizeof(field_name) / sizeof(field_name[0]); i++)
+	{
+		std::cout << field_name[i] << std::endl;
+		if (!getline(std::cin, field_contents[i]))
+			return false;
+	}
+	add(field_contents[0], field_contents[1], field_contents[2], field_contents[3], field_contents[4]);
 	return true;
 }
 
